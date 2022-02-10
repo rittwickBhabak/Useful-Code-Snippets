@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+{% block page_title %}All Codes{% endblock page_title %}
+{% block page_style %}
+<style>
+
+    h3 > div > a{
+        text-decoration: none; 
+    }
+</style>
+{% endblock page_style %}
+
+{% block page_content %}
+<div class="container mb-5 mt-2">
+    {% for code in code_list %}
+    {% comment %} <div class="rounded-top border shadow mb-3">
+        <h3 class="rounded-top p-2 d-flex justify-content-between align-items-center">
+            <div><a href="{% url 'codesnippets:view-code' code.pk %}">{{code.title}}</a></div>
+            <div class="float-end">
+                <a href="{% url 'codesnippets:update-code' code.pk %}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a href="{% url 'codesnippets:delete-code' code.pk %}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        </h3>
+        <pre class="p-3">
+            <code class="language-{{code.language}}">
+                {{code.code}}
+            </code>
+        </pre>
+    </div> {% endcomment %}
+    <h5><a href="{% url 'codesnippets:view-code' code.pk %}">{{code.title}}</a></h5>
+    {% empty %}
+    <p class="lead">No codes till now. <a href="{% url 'codesnippets:new-code' %}">Add code</a></p>
+    {% endfor %}
+</div>
+{% endblock page_content %}

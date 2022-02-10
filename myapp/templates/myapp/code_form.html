@@ -1,0 +1,52 @@
+{% extends 'myapp/base.html' %}
+{% block page_title %}
+{% if form.instance.pk %}
+Update {{form.instance.title}}
+{% else %}
+Add New Code
+{% endif %}
+{% endblock page_title %}
+{% block page_style %}
+<style>
+    label, input, textarea{
+        display: block;
+        width: 100%;
+    }
+    form{
+        margin: auto;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    input#id_title{
+        padding: 10px;
+        padding-bottom: 5px;
+        border: none;
+        border-bottom: 2px solid gray;
+        outline: none;
+    }
+    textarea{
+        padding: 10px;
+        border: 2px solid gray;
+        outline: none;
+    }
+    textarea:focus{
+        border: 2px solid black;
+    }
+</style>
+{% endblock page_style %}
+{% block page_content %}
+
+<div class="container mt-2 mb-4">
+    <form method="POST" class="p-3 rounded-top">
+        {% if form.instance.pk %}
+        <h3>Update {{form.instance.title}}</h3>
+        {% else %}
+        <h3>Add New Code</h3>
+        {% endif %}
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Save" class="btn btn-primary">
+    </form>
+    
+</div>
+{% endblock page_content %}

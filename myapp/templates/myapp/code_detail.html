@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+{% block page_title %}{{code.title}}{% endblock page_title %}
+{% block page_style %}
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+{% endblock page_style %}
+
+{% block page_content %}
+<div class="container mb-5 mt-2">
+    
+    <div class="rounded-top border shadow">
+        <h3 class="rounded-top p-2 d-flex justify-content-between align-items-center">
+            <div>{{code.title}}</div>
+            <div class="float-end">
+                <a href="{% url 'codesnippets:update-code' code.pk %}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a href="{% url 'codesnippets:delete-code' code.pk %}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        </h3>
+        <pre class="p-3">
+            <code class="language-{{code.language}}">
+                {{code.code}}
+            </code>
+        </pre>
+    </div>
+</div>
+{% endblock page_content %}
