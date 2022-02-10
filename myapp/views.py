@@ -18,7 +18,7 @@ class UpdateCode(UpdateView):
 
 class DeleteCode(DeleteView):
     model = Code 
-    success_url = reverse_lazy('codesnippets:code-list')
+    success_url = reverse_lazy('codesnippets:home')
 
 class ViewCode(DetailView):
     model = Code 
